@@ -3,4 +3,4 @@
 
 # GlieseOS
 
-A simple Pixel Watch OS made with CosmosOS
+A simple Pixel Watch OS made with [Cosmos](https://github.com/valentinbreiz/nativeaot-patcher).
