@@ -44,7 +44,7 @@ adb reboot bootloader
 fastboot flashing unlock
 ```
 
-> **Note:** `fastboot flashing unlock` will **wipe the watch**. After it reboots, go back into Settings and re-enable ADB USB Debugging, then run `adb reboot bootloader` again before continuing.
+> **Note:** `fastboot flashing unlock` will **wipe the watch**. The watch will reboot into a fastboot menu showing options like **Start**, Recovery Mode, Reboot Bootloader, Power Off, etc. Press the digital crown to select **Start** and let the watch boot normally. Go through the initial setup, then go back into Settings and re-enable ADB USB Debugging. Once done, run `adb reboot bootloader` again before continuing.
 
 ### 2. Run the deploy script
 
