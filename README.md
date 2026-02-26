@@ -39,7 +39,7 @@ Output:
 
 ```bash
 # On the watch: Settings > About > tap Build Number 7 times
-# Then: Settings > For Developers > Enable ADB USB Debugging + OEM Unlock
+# Then: Settings > For Developers > Enable ADBd Debugging + Enable OEM Unlock
 adb reboot bootloader
 fastboot flashing unlock
 ```
