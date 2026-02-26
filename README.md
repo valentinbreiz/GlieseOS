@@ -12,6 +12,7 @@ A simple Pixel Watch OS made with [Cosmos](https://github.com/valentinbreiz/nati
 - [.NET 10 SDK](https://dotnet.microsoft.com/download)
 - `aarch64-elf-gcc` (ARM64 cross-compiler)
 - `adb` and `fastboot`
+- Pixel Watch 3 **charging cradle** (the one that shipped with the watch — required for USB connectivity)
 - UEFI image for your watch from [mu_seluna_platforms releases](https://github.com/WOA-Project/mu_seluna_platforms/releases/latest)
   - Use **Selene** for the Pixel Watch 3 41mm, **Luna** for the 45mm
 - [Limine](https://github.com/limine-bootloader/limine) bootloader (`BOOTAA64.EFI`)
@@ -42,6 +43,8 @@ Output:
 adb reboot bootloader
 fastboot flashing unlock
 ```
+
+> **Note:** `fastboot flashing unlock` will **wipe the watch**. After it reboots, go back into Settings and re-enable ADB USB Debugging, then run `adb reboot bootloader` again before continuing.
 
 ### 2. Get into mass storage
 
