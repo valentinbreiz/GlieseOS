@@ -10,12 +10,12 @@ A simple Pixel Watch OS made with [Cosmos](https://github.com/valentinbreiz/nati
 ## Prerequisites
 
 - [.NET 10 SDK](https://dotnet.microsoft.com/download)
-- `aarch64-elf-gcc` (ARM64 cross-compiler)
+- [CosmosOS gen3](https://github.com/valentinbreiz/nativeaot-patcher)
 - `adb` and `fastboot`
-- Pixel Watch 3 **charging cradle** (the one that shipped with the watch — required for USB connectivity)
 - UEFI image for your watch from [mu_seluna_platforms releases](https://github.com/WOA-Project/mu_seluna_platforms/releases/latest)
   - Use **Selene** for the Pixel Watch 3 41mm, **Luna** for the 45mm
 - [Limine](https://github.com/limine-bootloader/limine) bootloader (`BOOTAA64.EFI`)
+- Pixel Watch 3 **charging cradle** (the one that shipped with the watch — required for USB connectivity)
 
 ---
 
