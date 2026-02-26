@@ -46,54 +46,21 @@ fastboot flashing unlock
 
 > **Note:** `fastboot flashing unlock` will **wipe the watch**. After it reboots, go back into Settings and re-enable ADB USB Debugging, then run `adb reboot bootloader` again before continuing.
 
-### 2. Get into mass storage
+### 2. Run the deploy script
 
-Flash the boot menu package to the **inactive** modem slot, then boot UEFI:
-
-```bash
-adb reboot bootloader
-fastboot getvar current-slot   # note the result: a or b
-
-# If current slot is a, flash to b — and vice versa
-fastboot flash modem_b bootpkg.bin   # or modem_a
-fastboot boot uefi.img
-```
-
-On the watch, press the **digital crown** to select **Mass Storage**. The watch now appears as a block device on your host.
-
-### 3. Mount the EFI partition
+Edit `deploy.sh` and set the two variables at the top:
 
 ```bash
-lsblk                                  # identify the watch block device, e.g. /dev/sdX
-sudo mkdir -p /mnt/watch
-sudo mount /dev/sdX<N> /mnt/watch      # mount the FAT32 EFI partition
+UEFI_IMG="/path/to/uefi-selene.img"    # or uefi-luna.img for the 45mm
+LIMINE_EFI="/path/to/BOOTAA64.EFI"
 ```
 
-### 4. Copy GlieseOS to the watch
+Then run:
 
 ```bash
-# Install Limine UEFI binary
-sudo mkdir -p /mnt/watch/EFI/BOOT
-sudo cp /path/to/limine/BOOTAA64.EFI /mnt/watch/EFI/BOOT/
-
-# Copy kernel and bootloader config
-sudo mkdir -p /mnt/watch/boot
-sudo cp bin/Debug/net10.0/linux-arm64/GlieseOS.elf /mnt/watch/boot/GlieseOS.elf
-sudo cp Bootloader/limine.conf /mnt/watch/boot/limine.conf
-sudo cp Bootloader/limine.conf /mnt/watch/
-
-sudo umount /mnt/watch
+./deploy.sh
 ```
 
-### 5. Boot GlieseOS
-
-```bash
-adb reboot bootloader
-
-# Erase the modem slot to restore the normal boot path
-fastboot erase modem_b   # or modem_a — whichever you flashed in step 2
-
-fastboot boot uefi.img
-```
+The script will build GlieseOS, flash `bootpkg.bin` to the inactive modem slot, boot the UEFI, guide you through mass storage, copy Limine + the kernel to the EFI partition, and boot GlieseOS automatically.
 
 The UEFI will find `BOOTAA64.EFI` (Limine), which loads `GlieseOS.elf` from the EFI partition. The watch face renders via the UEFI GOP framebuffer.
