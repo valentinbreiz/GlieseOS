@@ -1,0 +1,11 @@
+{
+  "targetArch": "arm64",
+  "qemu": {
+    "memory": "512M",
+    "machineType": "virt",
+    "cpuModel": "cortex-a72",
+    "serialMode": "stdio",
+    "disableGraphics": false,
+    "enableNetwork": false
+  }
+}
