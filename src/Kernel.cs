@@ -18,6 +18,7 @@ namespace GlieseOS
         {
             _watchFace.Draw();
             _canvas.Display();
+            Cosmos.Kernel.Core.Memory.Heap.Heap.Collect();
         }
     }
 }
