@@ -36,16 +36,40 @@ namespace GlieseOS
             for (int r = _radius - 4; r <= _radius; r++)
                 _canvas.DrawCircle(ColorBlue, _cx, _cy, r);
 
-            // Title: "GlieseOS"
             var font = PCScreenFont.DefaultFont;
-            string title = "GlieseOS";
-            int tw = title.Length * font.Width;
-            _canvas.DrawString(title, font, ColorWhite, _cx - tw / 2, _cy - font.Height - 2);
 
-            // Subtitle: "Pixel Watch 3"
-            string sub = "Pixel Watch 3";
-            int sw = sub.Length * font.Width;
-            _canvas.DrawString(sub, font, ColorGray, _cx - sw / 2, _cy + 4);
+            // Center: hour with seconds (default font, normal spacing)
+            var now = DateTime.Now;
+            string time = now.ToString("HH:mm:ss");
+            int tw = time.Length * font.Width;
+            _canvas.DrawString(time, font, ColorWhite, _cx - tw / 2, _cy - font.Height / 2);
+
+            // Debug/version labels UI (inside circle, below time)
+            int labelPad = 8;
+            string[] debugLabels = {
+                "Gliese 0.0.1",
+                "Cosmos 3.0.38",
+                "Dotnet 10.0.100"
+            };
+            int labelStartY = _cy + font.Height;
+            for (int i = 0; i < debugLabels.Length; i++)
+            {
+                string label = debugLabels[i];
+                int lw = label.Length * font.Width;
+                int ly = labelStartY + i * (font.Height + labelPad);
+                // Draw rectangle background (rounded not supported)
+                int rectX = _cx - lw / 2 - 6;
+                int rectY = ly - 2;
+                int rectW = lw + 12;
+                int rectH = font.Height + 4;
+                _canvas.DrawFilledRectangle(ColorDarkGray, rectX, rectY, rectW, rectH);
+                // Draw label text
+                _canvas.DrawString(label, font, ColorBlue, _cx - lw / 2, ly);
+            }
+
+            string accent = "GlieseOS";
+            int accentw = accent.Length * font.Width;
+            _canvas.DrawString(accent, font, ColorGray, _cx - accentw / 2, _cy - _radius + 20);
         }
     }
 }

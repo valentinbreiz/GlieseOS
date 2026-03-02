@@ -5,6 +5,16 @@
 
 A simple Pixel Watch OS made with [Cosmos](https://github.com/valentinbreiz/nativeaot-patcher).
 
+## Boot chain
+
+A concise sequence of what runs and who loads what when deploying and booting GlieseOS:
+
+1. Android bootloader -> mu UEFI: the flashed Android image provided by `mu_seluna_platforms` contains a payload that launches the mu UEFI firmware instead of (or alongside) the regular Android userspace. 
+
+2. UEFI firmware -> Limine (`BOOTAA64.EFI`): the UEFI firmware on the device enumerates the EFI partition and finds `BOOTAA64.EFI` (the Limine EFI binary). The firmware executes that EFI application as the bootloader.
+
+3. Limine -> `GlieseOS.elf`: Limine acts as a UEFI bootloader. It locates `GlieseOS.elf` on the EFI filesystem, loads the ELF image into memory, and transfers control to it.
+
 ---
 
 ## Prerequisites

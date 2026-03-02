@@ -6,20 +6,18 @@ namespace GlieseOS
     public class Kernel : Sys.Kernel
     {
         private WatchFace _watchFace;
+        private Canvas _canvas;
 
         protected override void BeforeRun()
         {
-            Canvas canvas = KernelConsole.Canvas;
-            _watchFace = new WatchFace(canvas);
-            _watchFace.Draw();
-            canvas.Display();
+            _canvas = KernelConsole.Canvas;
+            _watchFace = new WatchFace(_canvas);
         }
 
         protected override void Run()
         {
-            // Static POC: BeforeRun drew once, halt the main loop.
-            // Future: redraw on timer tick for animated clock hands.
-            Stop();
+            _watchFace.Draw();
+            _canvas.Display();
         }
     }
 }

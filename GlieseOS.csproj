@@ -6,7 +6,6 @@
     <CosmosEnableKeyboard>false</CosmosEnableKeyboard>
     <CosmosEnableMouse>false</CosmosEnableMouse>
     <CosmosEnableNetwork>false</CosmosEnableNetwork>
-    <CosmosEnableScheduler>false</CosmosEnableScheduler>
     <CosmosEnablePci>false</CosmosEnablePci>
     <TargetFramework>net10.0</TargetFramework>
     <OutputType>Exe</OutputType>
