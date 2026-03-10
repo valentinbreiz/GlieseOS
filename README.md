@@ -16,7 +16,7 @@ A concise sequence of what runs and who loads what when deploying and booting Gl
 
 ---
 
-**⚠️ Build not possible at this state** pending [mu_seluna_platforms](https://github.com/WOA-Project/mu_seluna_platforms) custom fork.
+Use the UEFI image from the [mu_seluna_platforms](https://github.com/valentinbreiz/mu_seluna_platforms/tree/limine-boot-fixes) custom fork.
 
 ## Prerequisites
 
